@@ -1,4 +1,4 @@
-# Docker Container For PHP Development (Nginx, PHP8, MariaDB, Xdebug)
+# Docker For PHP Development (Nginx, PHP8, MariaDB, Xdebug)
 
 ## Let's start
 
