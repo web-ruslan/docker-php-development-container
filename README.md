@@ -72,3 +72,8 @@ remove any docker resources (images, containers, volumes, and networks) not tagg
 ## Useful additional info
 
 [available timezones](https://manpages.ubuntu.com/manpages/xenial/man3/DateTime::TimeZone::Catalog.3pm.html)
+
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
