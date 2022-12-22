@@ -45,7 +45,7 @@ list running containers:
 
 `docker container ls`
 
-ssh connect to conteiner
+ssh connect to container
 
 `docker container exec -it <container_hash> /bin/bash`
 
