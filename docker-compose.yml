@@ -1,0 +1,39 @@
+version: '3.7'
+services:
+    web:
+        image: nginx:latest
+        environment:
+            TZ: "Europe/Kiev"
+        container_name: nginx-pdf
+        ports:
+            - "80:80"
+        volumes:
+            - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+            - ./app:/app
+        links:
+            - php
+    php:
+        build:
+            context: .
+            dockerfile: PHP.Dockerfile
+        container_name: php-pdf
+        volumes:
+            - ./app:/app
+        links:
+            - mysql
+    mysql:
+        image: mariadb:latest
+        container_name: mysql-pdf
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+        volumes:
+            - mysqldata:/var/lib/mysql
+        env_file:
+            - ./.env
+volumes:
+    mysqldata: {}
