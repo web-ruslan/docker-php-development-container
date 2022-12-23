@@ -8,6 +8,10 @@ mkdir <project directory>
 cd <project directory>
 git clone git@github.com:web-ruslan/docker-php-development-container.git .
 ```
+copy `.env.example` to `.env` and edit settings (TZ - you can [choose timezone in this list](https://manpages.ubuntu.com/manpages/xenial/man3/DateTime::TimeZone::Catalog.3pm.html))
+
+
+
 get your IP
 ```
 hostname -I | cut -d' ' -f1
@@ -71,7 +75,6 @@ remove any docker resources (images, containers, volumes, and networks) not tagg
 
 ## Useful additional info
 
-[available timezones](https://manpages.ubuntu.com/manpages/xenial/man3/DateTime::TimeZone::Catalog.3pm.html)
 
 
 ## License

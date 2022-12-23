@@ -3,7 +3,7 @@ services:
     web:
         image: nginx:latest
         environment:
-            TZ: "Europe/Kiev"
+            TZ: ${TZ}
         container_name: nginx-pdf
         ports:
             - "80:80"
@@ -12,6 +12,8 @@ services:
             - ./app:/app
         links:
             - php
+        env_file:
+            - ./.env
     php:
         build:
             context: .
@@ -27,12 +29,15 @@ services:
         ports:
             - 3306:3306
         environment:
+            TZ: ${TZ}
             MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
             MYSQL_DATABASE: ${DB_DATABASE}
             MYSQL_USER: ${DB_USERNAME}
             MYSQL_PASSWORD: ${DB_PASSWORD}
         volumes:
             - mysqldata:/var/lib/mysql
+            - /etc/timezone:/etc/timezone:ro
+            - /etc/localtime:/etc/localtime:ro
         env_file:
             - ./.env
 volumes:
