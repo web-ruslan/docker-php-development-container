@@ -73,10 +73,6 @@ remove any docker resources (images, containers, volumes, and networks) not tagg
 
 `docker system prune`
 
-## Useful additional info
-
-
-
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
