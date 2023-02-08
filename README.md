@@ -69,6 +69,11 @@ remove all docker images:
 
 `docker rmi $(docker images -a -q)`
 
+if you have seen error `Error response from daemon: conflict: unable to delete **** (must be forced) - image is being used by stopped container ***` just do:
+
+`docker rm -f $(docker ps -a -q) \
+&& sleep 2 && docker rmi -f $(docker images -a -q)`
+
 remove any docker resources (images, containers, volumes, and networks) not tagged or associated with a container
 
 `docker system prune`
