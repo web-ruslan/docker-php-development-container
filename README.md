@@ -69,7 +69,7 @@ remove all docker images:
 
 `docker rmi $(docker images -a -q)`
 
-if you have seen error `Error response from daemon: conflict: unable to delete **** (must be forced) - image is being used by stopped container ***` just do:
+if you have seen error `Error response from daemon: conflict: unable to delete **** (must be forced) - image is being used by stopped container ***` just do it:
 
 `docker rm -f $(docker ps -a -q) 
 && sleep 2 && docker rmi -f $(docker images -a -q)`
