@@ -8,11 +8,11 @@ mkdir <project directory>
 cd <project directory>
 git clone git@github.com:web-ruslan/docker-php-development-container.git .
 ```
-copy `.env.example` to `.env` and edit settings (TZ - you can [choose timezone in this list](https://manpages.ubuntu.com/manpages/xenial/man3/DateTime::TimeZone::Catalog.3pm.html))
+Copy `.env.example` to `.env` and edit settings (TZ - you can [choose timezone in this list](https://manpages.ubuntu.com/manpages/xenial/man3/DateTime::TimeZone::Catalog.3pm.html))
 
+Edit php.ini
 
-
-get your IP
+Get your IP
 ```
 hostname -I | cut -d' ' -f1
 ```
@@ -29,11 +29,11 @@ to the end of file this line:
 ```
 127.0.0.1       docker.test
 ```
-build images:
+Build images:
 ```
 docker compose build --no-cache
 ```
-run containers:
+Run containers:
 ```
 docker compose up -d
 ```

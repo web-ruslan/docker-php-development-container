@@ -8,37 +8,41 @@ services:
         ports:
             - "80:80"
         volumes:
-            - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
-            - ./app:/app
+            - "./nginx.conf:/etc/nginx/conf.d/nginx.conf"
+            - "./app:/app"
         links:
             - php
-        env_file:
-            - ./.env
     php:
         build:
             context: .
             dockerfile: PHP.Dockerfile
         container_name: php-pdf
+        environment:
+            DB_DATABASE: ${DB_DATABASE}
+            DB_USERNAME: ${DB_USERNAME}
+            DB_PASSWORD: ${DB_PASSWORD}
         volumes:
-            - ./app:/app
+            - "./app:/app"
         links:
             - mysql
     mysql:
         image: mariadb:latest
         container_name: mysql-pdf
         ports:
-            - 3306:3306
+            - "3306:3306"
         environment:
             TZ: ${TZ}
-            MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
             MYSQL_DATABASE: ${DB_DATABASE}
             MYSQL_USER: ${DB_USERNAME}
             MYSQL_PASSWORD: ${DB_PASSWORD}
         volumes:
-            - mysqldata:/var/lib/mysql
-            - /etc/timezone:/etc/timezone:ro
-            - /etc/localtime:/etc/localtime:ro
-        env_file:
-            - ./.env
+            - "./mysql/data:/var/lib/mysql"
+            - "/etc/timezone:/etc/timezone:ro"
+            - "/etc/localtime:/etc/localtime:ro"
+            - "./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        restart: unless-stopped
 volumes:
     mysqldata: {}

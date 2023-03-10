@@ -1,6 +1,5 @@
 .idea/
 .docker
 .env
-/app/templates_c/
-/app/logs/
-/app/documents/
+/app/logs/*
+/mysql/data/*

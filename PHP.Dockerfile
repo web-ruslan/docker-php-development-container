@@ -30,11 +30,11 @@ RUN pecl install xdebug && docker-php-ext-enable xdebug  \
     && echo "xdebug.log_level=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.idekey=PHPSTORM" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-RUN mkdir -p /app/logs && \
-    mkdir -p /app/templates_c
+RUN mkdir -p /app/logs
 
-RUN chmod -R 755 /app/logs && \
-  chmod -R 755 /app/templates_c
+RUN chmod -R 755 /app/logs
+
+RUN chown -R www-data:www-data /app/logs
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
